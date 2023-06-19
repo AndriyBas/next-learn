@@ -1,10 +1,15 @@
 import * as React from "react";
+import EventList from "@/components/events/EventList";
+import { getAllEvents } from "@/data/dummy";
+import EventsSearch from "@/components/events/EventsSearch";
 
 const AllEvents: React.FC = () => {
+  const allEvents = getAllEvents();
   return (
-    <div className="">
-      <h1 className="text-3xl">All events</h1>
-    </div>
+    <>
+      <EventsSearch />
+      <EventList items={allEvents} />
+    </>
   );
 };
 

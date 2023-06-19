@@ -10,7 +10,7 @@ interface EventListProps {
 
 const EventList: React.FC<EventListProps> = ({ items }) => {
   return (
-    <ul className="w-[90%] max-w-[40rem] mt-20 mb-20">
+    <ul className="w-[90%] max-w-[40rem] mt-10 mb-20">
       {/* <ul className={styles.list}> */}
       {items.map((event) => (
         <EventItem key={event.id} item={event}></EventItem>
