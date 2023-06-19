@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Event } from "@/data/Event";
-import Link from "next/link";
-import styles from "./EventItem.module.css";
 import Button from "../ui/Button";
 import DateIcon from "../icons/DateIcon";
 import AddressIcon from "../icons/AddressIcon";
 import ArrowRightIcon from "../icons/ArrowRightIcon";
+import styles from "./EventItem.module.css";
 
 interface EventItemProps {
   item: Event;
