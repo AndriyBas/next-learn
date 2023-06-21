@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import { Event } from "@/data/Event";
 import Button from "../ui/Button";
 import DateIcon from "../icons/DateIcon";
@@ -23,7 +24,7 @@ const EventItem: React.FC<EventItemProps> = ({ item }) => {
 
   return (
     <li className={styles.item}>
-      <img src={"/" + image} alt={title} width={300} height={300} />
+      <Image src={"/" + image} alt={title} width={250} height={160} />
 
       <div className={styles.content}>
         <div className={styles.summary}>

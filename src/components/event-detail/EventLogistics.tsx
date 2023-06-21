@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import AddressIcon from "../icons/AddressIcon";
 import DateIcon from "../icons/DateIcon";
 import LogisticsItem from "./LogisticsItem";
@@ -22,7 +23,7 @@ const EventLogistics: React.FC<EventLogisticsProps> = ({ event }) => {
   return (
     <section className={classes.logistics}>
       <div className={classes.image}>
-        <img src={`/${image}`} alt={title} />
+        <Image src={`/${image}`} alt={title} width={300} height={300} />
       </div>
       <ul className={classes.list}>
         <LogisticsItem icon={DateIcon}>

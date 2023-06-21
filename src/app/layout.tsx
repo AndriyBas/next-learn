@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Next Events",
   description: "Most interesting events in the area",
+  // viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
