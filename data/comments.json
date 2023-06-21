@@ -1,0 +1,37 @@
+[
+  {
+    "_id": "1234",
+    "eventId": "e1",
+    "name": "Bas",
+    "email": "bas@gmail.com",
+    "text": "Hello fellas!"
+  },
+  {
+    "_id": "1235",
+    "eventId": "e1",
+    "name": "Oleh",
+    "email": "oleh@gmail.com",
+    "text": "Yay, cool!"
+  },
+  {
+    "_id": "1236",
+    "eventId": "e2",
+    "name": "Oleh",
+    "email": "oleh@gmail.com",
+    "text": "Yay, cool!"
+  },
+  {
+    "_id": "1237",
+    "email": "cool@some.com",
+    "name": "Cool name",
+    "text": "Cool comment!",
+    "eventId": "e2"
+  },
+  {
+    "name": "Oleh",
+    "email": "oleh@gmail.com",
+    "text": "Yay, cool!",
+    "eventId": "e1",
+    "_id": "wl8o"
+  }
+]
