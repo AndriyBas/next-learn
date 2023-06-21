@@ -9,7 +9,19 @@ interface EventDetailsProps {
   params: { eventId: string };
 }
 
-export const revalidate = 1800;
+export const revalidate = 1800; // 30 mins
+
+export async function generateMetadata({
+  params: { eventId },
+}: {
+  params: { eventId: string };
+}) {
+  const event = await getEventById(eventId);
+  return {
+    title: event?.title ?? "Not found event",
+    description: event?.description,
+  };
+}
 
 export async function generateStaticParams() {
   const events = await getFeaturedEvents();
