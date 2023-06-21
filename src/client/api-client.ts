@@ -18,3 +18,7 @@ export async function getAllEvents(): Promise<Event[]> {
 export async function getFeaturedEvents() {
   return getAllEvents().then((events) => events.filter((e) => e.isFeatured));
 }
+
+export async function getEventById(id: string) {
+  return getAllEvents().then((events) => events.find((e) => e.id === id));
+}
