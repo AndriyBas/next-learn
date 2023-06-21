@@ -2,28 +2,17 @@ import EventList from "@/components/events/EventList";
 import ResultsTitle from "@/components/events/ResultsTitle";
 import Button from "@/components/ui/Button";
 import ErrorAlert from "@/components/ui/ErrorAlert";
-import { getFilteredEvents } from "@/data/dummy";
+import { getFilteredEvents } from "@/client/api-client";
 
 interface EventDetailsProps {
   params: { slug: string[] };
 }
 
-const FilteredEvents: React.FC<EventDetailsProps> = ({ params: { slug } }) => {
+const FilteredEvents: React.FC<EventDetailsProps> = async ({
+  params: { slug },
+}) => {
   const year = parseInt(slug[0]);
   const month = parseInt(slug[1]);
-
-  //   .alert {
-  //   margin: 1rem auto;
-  //   padding: 1rem 2rem;
-  //   width: 90%;
-  //   max-width: 40rem;
-  //   background-color: #d5bdfc;
-  //   color: #38028d;
-  //   font-weight: bold;
-  //   font-size: 1.5rem;
-  //   text-align: center;
-  //   border-radius: 6px;
-  // }
 
   if (isNaN(year) || isNaN(month) || month > 12 || month < 1 || year < 2020) {
     return (
@@ -38,7 +27,7 @@ const FilteredEvents: React.FC<EventDetailsProps> = ({ params: { slug } }) => {
       </>
     );
   }
-  const events = getFilteredEvents(year, month);
+  const events = await getFilteredEvents(year, month);
   if (!events.length) {
     return (
       <>
@@ -55,7 +44,7 @@ const FilteredEvents: React.FC<EventDetailsProps> = ({ params: { slug } }) => {
   return (
     <>
       <ResultsTitle date={new Date(year, month - 1)} />
-      <EventList items={events} />;
+      <EventList items={events} />
     </>
   );
 };

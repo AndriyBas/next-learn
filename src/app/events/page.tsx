@@ -1,10 +1,12 @@
 import * as React from "react";
 import EventList from "@/components/events/EventList";
-import { getAllEvents } from "@/data/dummy";
+import { getAllEvents } from "@/client/api-client";
 import EventsSearch from "@/components/events/EventsSearch";
 
-const AllEvents: React.FC = () => {
-  const allEvents = getAllEvents();
+export const revalidate = 60; // seconds
+
+const AllEvents: React.FC = async () => {
+  const allEvents = await getAllEvents();
   return (
     <>
       <EventsSearch />
