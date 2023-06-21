@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getAllEvents, getEventById } from "@/client/api-client";
+import { getEventById, getFeaturedEvents } from "@/client/api-client";
 import EventSummary from "@/components/event-detail/EventSummary";
 import EventLogistics from "@/components/event-detail/EventLogistics";
 import EventContent from "@/components/event-detail/EventContent";
@@ -9,8 +9,10 @@ interface EventDetailsProps {
   params: { eventId: string };
 }
 
+export const revalidate = 1800;
+
 export async function generateStaticParams() {
-  const events = await getAllEvents();
+  const events = await getFeaturedEvents();
   return events.map((e) => ({ eventId: e.id }));
 }
 
