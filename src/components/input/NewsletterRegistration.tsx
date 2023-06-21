@@ -1,16 +1,24 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { NotificationContext } from "@/store/NotificationContext";
 
 import classes from "./NewsletterRegistration.module.css";
 
 function NewsletterRegistration() {
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const notifContext = useContext(NotificationContext);
 
   function registrationHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current?.value;
+
+    notifContext.showNotification({
+      title: "Stay tuned",
+      message: "Submitting...",
+      status: "pending",
+    });
 
     fetch("/api/newsletter", {
       method: "POST",
@@ -19,8 +27,29 @@ function NewsletterRegistration() {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((response) => {
+        if (response.ok) return response.json();
+        return response.json().then((data) => {
+          return Promise.reject(
+            new Error(data.message || "Something went wrong!")
+          );
+        });
+      })
+      .then((data) => {
+        console.log(data);
+        notifContext.showNotification({
+          title: "Yay",
+          message: "Your email submitted!",
+          status: "success",
+        });
+      })
+      .catch((e) => {
+        notifContext.showNotification({
+          title: "Ooops, error happened",
+          message: e.message,
+          status: "error",
+        });
+      });
   }
 
   return (

@@ -1,6 +1,7 @@
 import MainHeader from "@/components/layout/MainHeader";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { NotificationContextProvider } from "@/store/NotificationContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <MainHeader />
         <main className="flex min-h-screen flex-col items-center">
-          {children}
+          <NotificationContextProvider>{children}</NotificationContextProvider>
         </main>
       </body>
     </html>

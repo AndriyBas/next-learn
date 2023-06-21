@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import CommentList from "./CommentList";
 import NewComment from "./NewComment";
 import classes from "./Comments.module.css";
+import { NotificationContext } from "@/store/NotificationContext";
 
 function Comments({ eventId }: { eventId: string }) {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
+  const notifContext = useContext(NotificationContext);
 
   useEffect(() => {
     if (showComments) {
@@ -25,6 +27,11 @@ function Comments({ eventId }: { eventId: string }) {
   }
 
   function addCommentHandler(commentData: object) {
+    notifContext.showNotification({
+      title: "Stay tuned",
+      message: "Submitting comment...",
+      status: "pending",
+    });
     fetch("/api/comments/" + eventId, {
       method: "POST",
       body: JSON.stringify(commentData),
@@ -33,7 +40,14 @@ function Comments({ eventId }: { eventId: string }) {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        notifContext.showNotification({
+          title: "Success",
+          message: "Your comment added!",
+          status: "success",
+        });
+        console.log(data);
+      });
   }
 
   return (
